@@ -6,7 +6,7 @@
 Summary:	Specify refactorings to perform with apply-refact
 Name:		ghc-%{pkgname}
 Version:	0.3.0.2
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/refact
@@ -101,14 +101,16 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{name}-%{version}-doc/*
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/HSrefact-%{version}.o
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSrefact-%{version}.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSrefact-%{version}-*.so
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSrefact-%{version}-*.a
+%exclude %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSrefact-%{version}-*_p.a
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Refact
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Refact/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Refact/*.dyn_hi
 
 %if %{with prof}
 %files prof
 %defattr(644,root,root,755)
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSrefact-%{version}_p.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSrefact-%{version}-*_p.a
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Refact/*.p_hi
 %endif
